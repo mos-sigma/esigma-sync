@@ -1,11 +1,10 @@
 version: '3'
 services:
   php:
-    container_name: migrations-php
     build: "./docker/php-fpm"
     volumes:
         - ./:/var/www/app
-  db:
+  mysql:
     image: mysql:5.7
     restart: always
     environment:
@@ -19,5 +18,16 @@ services:
       - '3306'
     volumes:
       - my-db:/var/lib/mysql
+  psql:
+      image: postgres:9.5.14
+      ports:
+       - "5432:5432"
+      environment:
+       - POSTGRES_PASSWORD=password
+       - POSTGRES_USER=user
+       - PGDATA=/var/lib/postgresql/data/pgdata
+      volumes:
+       - psql-data:/var/lib/postgresql/data/pgdata
 volumes:
   my-db:
+  psql-data:

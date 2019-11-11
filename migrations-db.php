@@ -4,6 +4,6 @@ return [
     'dbname' => 'db',
     'user' => 'user',
     'password' => 'password',
-    'host' => 'db',
+    'host' => 'mysql',
     'driver' => 'pdo_mysql',
 ];
