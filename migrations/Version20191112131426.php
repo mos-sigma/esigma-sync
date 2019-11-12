@@ -6,11 +6,9 @@ namespace MyProject\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
+use Sigma\Sync\SigmaMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
-final class Version20191112131426 extends AbstractMigration
+final class Version20191112131426 extends SigmaMigration
 {
     public function getDescription(): string
     {
@@ -19,14 +17,16 @@ final class Version20191112131426 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('CREATE TRIGGER update_checksum_on_insert
-	                      AFTER INSERT ON foo
+        $table = $this->sigmaSync('table');
+
+        $this->addSql("CREATE TRIGGER update_checksum_on_insert
+	                      AFTER INSERT ON $table 
 	                      FOR EACH ROW
                           BEGIN
 	                        INSERT INTO sigma_checksum (doc_id, doc_checksum, doc_type)
-                            VALUES(NEW.id, MD5(CONCAT(NEW.name)), \'Document\') 
+                            VALUES(NEW.id, MD5(CONCAT(NEW.name)), 'Document') 
                             ON DUPLICATE KEY UPDATE doc_checksum = MD5(CONCAT(NEW.name));
-                       END;');
+                       END;");
     }
 
     public function down(Schema $schema): void

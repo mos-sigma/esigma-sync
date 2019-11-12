@@ -1,5 +1,20 @@
 {
     "require": {
-        "doctrine/migrations": "^2.0"
+        "doctrine/migrations": "^2.0",
+        "mos-sigma/sigma": "^0.2.8"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sigma\\Sync\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "/test/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {}
     }
 }
