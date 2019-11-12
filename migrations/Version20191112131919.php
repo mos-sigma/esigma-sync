@@ -6,9 +6,8 @@ namespace MyProject\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
-use Sigma\Sync\SigmaMigration;
 
-final class Version20191112131919 extends SigmaMigration
+final class Version20191112131919 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -17,7 +16,7 @@ final class Version20191112131919 extends SigmaMigration
 
     public function up(Schema $schema): void
     {
-        $table = $this->sigmaSync('table');
+        $table = 'foo';
 
         $this->addSql("INSERT INTO sigma_checksum(doc_id,doc_checksum,doc_type)
                        SELECT id, MD5(CONCAT(name)), 'Document' FROM $table;");

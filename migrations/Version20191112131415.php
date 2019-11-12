@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace MyProject\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
-use Sigma\Sync\SigmaMigration;
+use Doctrine\Migrations\AbstractMigration;
 
-final class Version20191112131415 extends SigmaMigration
+final class Version20191112131415 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -16,7 +16,7 @@ final class Version20191112131415 extends SigmaMigration
 
     public function up(Schema $schema): void
     {
-        $table = $this->sigmaSync('table');
+        $table = 'foo';
 
         $this->addSql("CREATE TRIGGER update_checksum_on_update
 	                      AFTER UPDATE ON $table 
