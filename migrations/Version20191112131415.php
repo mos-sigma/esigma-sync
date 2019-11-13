@@ -6,6 +6,7 @@ namespace MyProject\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
+use Sigma\Sync\Configuration;
 
 final class Version20191112131415 extends AbstractMigration
 {
@@ -16,7 +17,9 @@ final class Version20191112131415 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $table = 'foo';
+        /** @var  Configuration $config  */
+        $config = $this->version->getConfiguration();
+        $table = $config->sigmaParam('table');
 
         $this->addSql("CREATE TRIGGER update_checksum_on_update
 	                      AFTER UPDATE ON $table 

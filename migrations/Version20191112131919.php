@@ -16,7 +16,9 @@ final class Version20191112131919 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $table = 'foo';
+        /** @var  Configuration $config  */
+        $config = $this->version->getConfiguration();
+        $table = $config->sigmaParam('table');
 
         $this->addSql("INSERT INTO sigma_checksum(doc_id,doc_checksum,doc_type)
                        SELECT id, MD5(CONCAT(name)), 'Document' FROM $table;");

@@ -17,7 +17,7 @@ services:
     expose:
       - '3306'
     volumes:
-      - my-db:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
   psql:
       image: postgres:9.5.14
       restart: always
@@ -27,7 +27,6 @@ services:
        - POSTGRES_PASSWORD=password
        - POSTGRES_USER=user
        - POSTGRES_DB=db
-       - PGDATA=/var/lib/postgresql/data/pgdata
       volumes:
        - psql-data:/var/lib/postgresql/data/pgdata
 volumes:

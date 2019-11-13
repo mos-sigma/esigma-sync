@@ -18,11 +18,11 @@ final class Version20191109201625 extends AbstractMigration
     {
         $this->addSql('CREATE TABLE sigma_checksum (
                        doc_id INT NOT NULL,
-                       doc_checksum VARCHAR(255),
-                       doc_type VARCHAR(50));');
+                       doc_checksum VARCHAR(255) NOT NULL,
+                       doc_type VARCHAR(50) NOT NULL);');
 
 
-        $this->addSql('ALTER TABLE sigma_checksum ADD CONSTRAINT unique_doc_id UNIQUE (doc_id);');
+        $this->addSql('ALTER TABLE sigma_checksum ADD CONSTRAINT unique_doc_id UNIQUE (doc_id, doc_type);');
     }
 
     public function down(Schema $schema): void

@@ -16,7 +16,9 @@ final class Version20191112131426 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $table = 'foo';
+        /** @var  Configuration $config  */
+        $config = $this->version->getConfiguration();
+        $table = $config->sigmaParam('table');
 
         $this->addSql("CREATE TRIGGER update_checksum_on_insert
 	                      AFTER INSERT ON $table 
