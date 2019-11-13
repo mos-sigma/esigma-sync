@@ -1,1 +1,1 @@
-# esigma-sync
+# Sigma-sync
