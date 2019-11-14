@@ -16,8 +16,7 @@ class InitCommand extends MigrateCommand
         parent::configure();
 
         $this
-            ->setName('sync:init')
-            ->setAliases(['migrate'])
+            ->setName('install')
             ->setDescription(
                 'Execute a migration to a specified version or the latest available version.'
             );

@@ -12,6 +12,7 @@ return [
     ],
     'sigma' => [
         'table' => 'foo',
-        'fields' => ['name']
+        'type' => 'Sigma\Document\Document',
+        'fields' => ['name', 'name2', 'name3', 'name4']
     ]
 ];
