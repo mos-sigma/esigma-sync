@@ -12,8 +12,8 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Doctrine\Migrations\Tools\Console\Helper\ConfigurationHelper;
-use Doctrine\Migrations\Configuration\Configuration;
 use Sigma\Sync\Configuration as SigmaConfiguration;
+use Sigma\Sync\Commands\InitCommand;
 
 $config = include 'sigma.php';
 
@@ -21,7 +21,7 @@ $connection = DriverManager::getConnection($config['connection']);
 
 $configuration = new SigmaConfiguration($connection, $config['sigma']);
 $configuration->setName('Sigma init');
-$configuration->setMigrationsNamespace('Sigma\Migrations');
+$configuration->setMigrationsNamespace('Sigma\Sync\Migrations');
 $configuration->setMigrationsTableName('sigma_migration_versions');
 $configuration->setMigrationsColumnName('version');
 $configuration->setMigrationsColumnLength(255);
@@ -41,7 +41,7 @@ $cli->setCatchExceptions(true);
 $cli->setHelperSet($helperSet);
 
 $cli->addCommands(array(
-    new Command\MigrateCommand(),
+    new InitCommand(),
 ));
 
 $cli->run();
