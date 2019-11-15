@@ -25,6 +25,22 @@ jobs:
             - composer-v1-{{ checksum "composer.lock" }}
             - composer-v1-
       - run: composer install -n --prefer-dist
+      - run: touch ~/project/sigma.php
+      - run: >
+            echo "<?php
+            return [
+            'connection' => [
+            'dbname' => 'db',
+            'user' => 'user',
+            'password' => 'password',
+            'host' => 'mysql',
+            'driver' => 'pdo_mysql'
+            ],
+            'sigma' => [
+            'table' => 'products',
+            'type' => Index::class,
+            'fields' => ['name', 'name2']
+            ]];" >> ~/project/sigma.php
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
