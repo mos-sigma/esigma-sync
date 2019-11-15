@@ -41,6 +41,8 @@ jobs:
             'type' => Index::class,
             'fields' => ['name', 'name2']
             ]];" >> ~/project/sigma.php
+      - run: cd ~/project
+      - run: bin/sigma install
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
