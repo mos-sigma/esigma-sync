@@ -6,7 +6,7 @@ jobs:
     docker: 
       - image: php:7.2-cli
 
-      - image: mysql:5.7
+      - image: circleci/mysql:5.7
         environment:
          MYSQL_DATABASE: 'db'
          MYSQL_USER: 'user'
@@ -15,9 +15,17 @@ jobs:
         
     working_directory: ~/project
     steps:
+      - checkout
       - run: apt-get update
       - run: apt-get -y install git zip unzip
-      - checkout
+      - run: docker-php-ext-install pdo_mysql
+      - run: docker-php-ext-enable pdo_mysql
+      - run: apt-get install -y mariadb-client
+      - run: > 
+            mysql -uuser -ppassword -h127.0.0.1 -Ddb -e "CREATE TABLE foo (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            bar VARCHAR(30) NOT NULL
+            )"
       - run: curl -sS https://getcomposer.org/installer | php
       - run: mv composer.phar /usr/local/bin/composer
       - restore_cache:
@@ -33,16 +41,16 @@ jobs:
             'dbname' => 'db',
             'user' => 'user',
             'password' => 'password',
-            'host' => 'mysql',
+            'host' => '127.0.0.1',
             'driver' => 'pdo_mysql'
             ],
             'sigma' => [
-            'table' => 'products',
-            'type' => Index::class,
-            'fields' => ['name', 'name2']
+            'table' => 'foo',
+            'type' => 'Sigma\Document\Document',
+            'fields' => ['bar']
             ]];" >> ~/project/sigma.php
       - run: cd ~/project
-      - run: bin/sigma install
+      - run: bin/sigma install --no-interaction
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
