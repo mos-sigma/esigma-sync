@@ -6,8 +6,9 @@ namespace Sigma\Sync\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
+use Sigma\Sync\SigmaMigration;
 
-final class Version20191109201625 extends AbstractMigration
+final class Version20191109201625 extends SigmaMigration
 {
     public function getDescription(): string
     {

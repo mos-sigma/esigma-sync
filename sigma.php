@@ -1,5 +1,7 @@
 <?php
 
+;
+
 return [
     'connection' => [
         'dbname' => 'db',
@@ -7,12 +9,10 @@ return [
         'password' => 'password',
         'host' => 'mysql',
         'driver' => 'pdo_mysql'
-        // 'host' => 'psql',
-        // 'driver' => 'pdo_pgsql',
     ],
     'sigma' => [
-        'table' => 'foo',
-        'type' => 'Sigma\Document\Document',
-        'fields' => ['name', 'name2', 'name3', 'name4']
+        'table' => 'products',
+        'type' => Index::class,
+        'fields' => ['name', 'name2']
     ]
 ];

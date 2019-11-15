@@ -1,4 +1,19 @@
 {
+    "name": "mos-sigma/sigma-sync",
+    "type": "library",
+    "description": "A PHP command line library for managing synchronzation between a database and elasticsearch",
+    "keywords": [
+        "php",
+        "elasticsearch"
+    ],
+    "homepage": "https://www.mossigma.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nico Orfi",
+            "email": "nico_orfi@yahoo.com"
+        }
+    ],
     "require": {
         "doctrine/migrations": "^2.0",
         "mos-sigma/sigma": "^0.2.8",
@@ -17,5 +32,8 @@
     },
     "autoload-dev": {
         "psr-4": {}
-    }
+    },
+    "bin": [
+        "bin/sigma"
+    ]
 }

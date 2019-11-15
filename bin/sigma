@@ -13,7 +13,8 @@ use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Doctrine\Migrations\Tools\Console\Helper\ConfigurationHelper;
 use Sigma\Sync\Configuration as SigmaConfiguration;
-use Sigma\Sync\Commands\InitCommand;
+use Sigma\Sync\Commands\InstallCommand;
+use Sigma\Sync\Commands\UninstallCommand;
 
 $config = include 'sigma.php';
 
@@ -41,7 +42,8 @@ $cli->setCatchExceptions(true);
 $cli->setHelperSet($helperSet);
 
 $cli->addCommands(array(
-    new InitCommand(),
+    new InstallCommand(),
+    new UninstallCommand()
 ));
 
 $cli->run();

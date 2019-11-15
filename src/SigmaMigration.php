@@ -8,14 +8,27 @@ use Exception;
 
 abstract class SigmaMigration extends AbstractMigration
 {
-    protected function sigmaSync($key)
+    protected function triggerFormatedFields()
     {
-        $connectionParams = $this->version->getConfiguration()->getConnection()->getParams();
 
-        if (!isset($connectionParams['sigma'])) {
-            throw new Exception('Not sigma configuration found');
-        }
+        $fields = $this->version->getConfiguration()->sigmaParam('fields');
 
-        return $connectionParams['sigma'][$key];
+        $fields = array_map(function ($field) {
+
+            return 'NEW.' . $field;
+        }, $fields);
+
+        $fields = implode(',', $fields);
+
+        return $fields;
+    }
+
+    protected function formatedFields()
+    {
+        $fields = $this->version->getConfiguration()->sigmaParam('fields');
+
+        $fields = implode(',', $fields);
+
+        return $fields;
     }
 }

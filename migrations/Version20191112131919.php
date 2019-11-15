@@ -6,8 +6,9 @@ namespace Sigma\Sync\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
+use Sigma\Sync\SigmaMigration;
 
-final class Version20191112131919 extends AbstractMigration
+final class Version20191112131919 extends SigmaMigration
 {
     public function getDescription(): string
     {
@@ -19,9 +20,11 @@ final class Version20191112131919 extends AbstractMigration
         /** @var  Configuration $config  */
         $config = $this->version->getConfiguration();
         $table = $config->sigmaParam('table');
+        $type = $config->sigmaParam('type');
+        $fields = $this->formatedFields();
 
         $this->addSql("INSERT INTO sigma_checksum(doc_id,doc_checksum,doc_type)
-                       SELECT id, MD5(CONCAT(name)), 'Document' FROM $table;");
+                       SELECT id, MD5(CONCAT($fields)), ? FROM $table;", [$type]);
     }
 
     public function down(Schema $schema): void
