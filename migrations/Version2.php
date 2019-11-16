@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 use Sigma\Sync\Configuration;
 use Sigma\Sync\SigmaMigration;
 
-final class Version20191112131415 extends SigmaMigration
+final class Version2 extends SigmaMigration
 {
     public function getDescription(): string
     {

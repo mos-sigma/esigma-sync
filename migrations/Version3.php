@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Sigma\Sync\SigmaMigration;
 
-final class Version20191112131426 extends SigmaMigration
+final class Version3 extends SigmaMigration
 {
     public function getDescription(): string
     {
