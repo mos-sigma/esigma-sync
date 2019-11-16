@@ -4,19 +4,29 @@ declare(strict_types=1);
 
 namespace Sigma\Sync\Migrations;
 
-use Doctrine\DBAL\Driver\PDOMySql\Driver;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\Migrations\AbstractMigration;
 use Sigma\Sync\Configuration;
 use Sigma\Sync\SigmaMigration;
 
 final class Version2 extends SigmaMigration
 {
+    /**
+     * Description
+     * 
+     * @return string
+     */
     public function getDescription(): string
     {
         return 'Create on update trigger';
     }
 
+    /**
+     * Up queries
+     *
+     * @param Schema $schema
+     *
+     * @return void
+     */
     public function up(Schema $schema): void
     {
         $this->skipIf($this->version->getConfiguration()->getConnection()->getParams()['driver'] !== 'pdo_mysql');
@@ -40,6 +50,13 @@ final class Version2 extends SigmaMigration
         );
     }
 
+    /**
+     * Down queries
+     *
+     * @param Schema $schema
+     *
+     * @return void
+     */
     public function down(Schema $schema): void
     {
         $this->addSql('DROP TRIGGER update_checksum_on_update;');

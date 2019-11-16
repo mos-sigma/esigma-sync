@@ -5,7 +5,6 @@ jobs:
   build:
     docker: 
       - image: php:7.2-cli
-
       - image: circleci/mysql:5.7
         environment:
          MYSQL_DATABASE: 'db'
@@ -33,6 +32,7 @@ jobs:
             - composer-v1-{{ checksum "composer.lock" }}
             - composer-v1-
       - run: composer install -n --prefer-dist
+      - run: mkdir ~/project/tmp
       - run: touch ~/project/sigma.php
       - run: >
             echo "<?php
@@ -52,6 +52,9 @@ jobs:
       - run: cd ~/project
       - run: bin/sigma install --no-interaction
       - run: bin/sigma uninstall --no-interaction
+      - run: vendor/bin/phpunit --log-junit test-results/phpunit/results.xml
+      - codecov/upload:
+          file: tmp/coverage/coverage.xml
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:

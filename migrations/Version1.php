@@ -5,16 +5,27 @@ declare(strict_types=1);
 namespace Sigma\Sync\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\Migrations\AbstractMigration;
 use Sigma\Sync\SigmaMigration;
 
 final class Version1 extends SigmaMigration
 {
+    /**
+     * Description
+     * 
+     * @return string
+     */
     public function getDescription(): string
     {
         return 'Create Sigma checksum table';
     }
 
+    /**
+     * Up queries
+     *
+     * @param Schema $schema
+     *
+     * @return void
+     */
     public function up(Schema $schema): void
     {
         $this->addSql('CREATE TABLE sigma_checksum (
@@ -25,6 +36,13 @@ final class Version1 extends SigmaMigration
         $this->addSql('ALTER TABLE sigma_checksum ADD CONSTRAINT unique_doc_id UNIQUE (doc_id, doc_type);');
     }
 
+    /**
+     * Down queries
+     *
+     * @param Schema $schema
+     *
+     * @return void
+     */
     public function down(Schema $schema): void
     {
         $this->addSql('ALTER TABLE sigma_checksum DROP INDEX unique_doc_id;');

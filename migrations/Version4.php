@@ -5,16 +5,27 @@ declare(strict_types=1);
 namespace Sigma\Sync\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\Migrations\AbstractMigration;
 use Sigma\Sync\SigmaMigration;
 
 final class Version4 extends SigmaMigration
 {
+    /**
+     * Description
+     * 
+     * @return string
+     */
     public function getDescription(): string
     {
         return 'Populate checksum table';
     }
 
+    /**
+     * Up queries
+     *
+     * @param Schema $schema
+     *
+     * @return void
+     */
     public function up(Schema $schema): void
     {
         /** @var  Configuration $config  */
@@ -27,6 +38,13 @@ final class Version4 extends SigmaMigration
                        SELECT id, MD5(CONCAT($fields)), ? FROM $table;", [$type]);
     }
 
+    /**
+     * Down queries
+     *
+     * @param Schema $schema
+     *
+     * @return void
+     */
     public function down(Schema $schema): void
     {
         $this->addSql('TRUNCATE TABLE sigma_checksum;');

@@ -5,16 +5,27 @@ declare(strict_types=1);
 namespace Sigma\Sync\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\Migrations\AbstractMigration;
 use Sigma\Sync\SigmaMigration;
 
 final class Version3 extends SigmaMigration
 {
+    /**
+     * Description
+     * 
+     * @return string
+     */
     public function getDescription(): string
     {
         return 'Create on insert trigger';
     }
 
+    /**
+     * Up queries
+     *
+     * @param Schema $schema
+     *
+     * @return void
+     */
     public function up(Schema $schema): void
     {
         /** @var  Configuration $config  */
@@ -36,6 +47,13 @@ final class Version3 extends SigmaMigration
         );
     }
 
+    /**
+     * Down queries
+     *
+     * @param Schema $schema
+     *
+     * @return void
+     */
     public function down(Schema $schema): void
     {
         $this->addSql('DROP TRIGGER update_checksum_on_insert;');

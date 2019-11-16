@@ -3,11 +3,14 @@
 namespace Sigma\Sync;
 
 use Doctrine\Migrations\AbstractMigration;
-use Doctrine\Migrations\Version\Version;
-use Exception;
 
 abstract class SigmaMigration extends AbstractMigration
 {
+    /**
+     * Format fields for un in triger statement
+     *
+     * @return string
+     */
     protected function triggerFormatedFields()
     {
 
@@ -23,6 +26,11 @@ abstract class SigmaMigration extends AbstractMigration
         return $fields;
     }
 
+    /**
+     * Format fields for query use
+     *
+     * @return string
+     */
     protected function formatedFields()
     {
         $fields = $this->version->getConfiguration()->sigmaParam('fields');

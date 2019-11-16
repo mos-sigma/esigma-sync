@@ -2,12 +2,12 @@
 
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
-use Doctrine\Migrations\Tools\Console\Command;
-use Sigma\Sync\ParameterHelper;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -21,7 +21,7 @@ $config = include 'sigma.php';
 $connection = DriverManager::getConnection($config['connection']);
 
 $configuration = new SigmaConfiguration($connection, $config['sigma']);
-$configuration->setName('Sigma init');
+$configuration->setName('Sigma installation');
 $configuration->setMigrationsNamespace('Sigma\Sync\Migrations');
 $configuration->setMigrationsTableName('sigma_migration_versions');
 $configuration->setMigrationsColumnName('version');
@@ -34,7 +34,6 @@ $configuration->setCheckDatabasePlatform(false);
 $helperSet = new HelperSet();
 $helperSet->set(new QuestionHelper(), 'question');
 $helperSet->set(new ConnectionHelper($connection), 'db');
-$helperSet->set(new ParameterHelper($config['sigma']), 'sigma');
 $helperSet->set(new ConfigurationHelper($connection, $configuration));
 
 $cli = new Application('Sigma sync');
