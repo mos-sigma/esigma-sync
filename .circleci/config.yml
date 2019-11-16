@@ -51,6 +51,7 @@ jobs:
             ]];" >> ~/project/sigma.php
       - run: cd ~/project
       - run: bin/sigma install --no-interaction
+      - run: bin/sigma uninstall --no-interaction
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
