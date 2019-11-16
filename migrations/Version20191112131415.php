@@ -35,7 +35,7 @@ final class Version20191112131415 extends SigmaMigration
                           BEGIN
 	                        INSERT INTO sigma_checksum (doc_id, doc_checksum, doc_type)
                             VALUES(NEW.id, MD5(CONCAT($fields)), ?) 
-                            ON DUPLICATE KEY UPDATE doc_checksum = MD5(CONCAT(NEW.name));
+                            ON DUPLICATE KEY UPDATE doc_checksum = MD5(CONCAT($fields));
                        END;",[$type]
         );
     }
