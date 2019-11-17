@@ -3,8 +3,8 @@
 <p align="left">
 <a href="https://circleci.com/gh/mos-sigma/sigma-sync"><img src="https://circleci.com/gh/mos-sigma/sigma-sync.svg?style=svg" alt="Build Status"></a>
 
-<a href="https://codecov.io/gh/mos-sigma/sigma">
-  <img src="https://codecov.io/gh/mos-sigma/sigma/branch/master/graph/badge.svg" alt="Code coverage"/>
+<a href="https://codecov.io/gh/mos-sigma/sigma-sync">
+  <img src="https://codecov.io/gh/mos-sigma/sigma-sync/branch/master/graph/badge.svg" />
 </a>
 
 <a href="https://packagist.org/packages/mos-sigma/sigma">
@@ -16,7 +16,7 @@
 
 Create a `sigma.php` file in the root of your project like below:
 
-```
+```php
 // sigma.php
 <?php
 
@@ -37,14 +37,14 @@ return [
 ```
 
 After you have replaced the values in the `sigma.php` execute:
-```
+```sh
 $ ./vendor/bin/sigma install
 ```
 
 ## Uninstall 
 
 In the root directory of your project run:
-```
+```sh
 $ ./vendor/bin/sigma uninstall
 ```
 
