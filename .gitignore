@@ -1,2 +1,14 @@
+# Folders
 vendor
+tmp
+
+# Config
 sigma.php
+
+# Editor files
+.vscode
+.idea
+.devcontainer/devcontainer.json
+
+# Caches
+.phpunit.result.cache

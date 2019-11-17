@@ -1,7 +1,7 @@
 version: '3'
 services:
   php:
-    build: "./docker/php-fpm"
+    build: "./.devcontainer/php"
     volumes:
         - ./:/var/www/app
   mysql:
@@ -14,19 +14,17 @@ services:
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
       - '3306:3306'
-    expose:
-      - '3306'
     volumes:
       - mysql-data:/var/lib/mysql
   psql:
       image: postgres:9.5.14
       restart: always
       ports:
-       - "5432:5432"
+       - '5432:5432'
       environment:
-       - POSTGRES_PASSWORD=password
-       - POSTGRES_USER=user
-       - POSTGRES_DB=db
+       - POSTGRES_PASSWORD: 'password'
+       - POSTGRES_USER: 'user'
+       - POSTGRES_DB: 'db'
       volumes:
        - psql-data:/var/lib/postgresql/data/pgdata
 volumes:

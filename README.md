@@ -1,7 +1,7 @@
 # Sigma-sync
 
-<p align="center">
-<a href="https://circleci.com/gh/mos-sigma/sigma-sync"><img src="https://circleci.com/gh/mos-sigma/sigma-sync.svg?style=svg&circle-token=ef57d3cd50af58d1f118f79805b5517a9d593fac" alt="Build Status"></a>
+<p align="left">
+<a href="https://circleci.com/gh/mos-sigma/sigma-sync"><img src="https://circleci.com/gh/mos-sigma/sigma-sync.svg?style=svg" alt="Build Status"></a>
 
 <a href="https://codecov.io/gh/mos-sigma/sigma">
   <img src="https://codecov.io/gh/mos-sigma/sigma/branch/master/graph/badge.svg" alt="Code coverage"/>
@@ -11,6 +11,8 @@
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License"/>
 </a>
 </p>
+
+## Installation
 
 Create a `sigma.php` file in the root of your project like below:
 
@@ -33,8 +35,6 @@ return [
     ]
 ];
 ```
-
-## Installation
 
 After you have replaced the values in the `sigma.php` execute:
 ```

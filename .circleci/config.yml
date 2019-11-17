@@ -11,7 +11,6 @@ jobs:
          MYSQL_USER: 'user'
          MYSQL_PASSWORD: 'password'
          MYSQL_ROOT_PASSWORD: 'password'
-        
     working_directory: ~/project
     steps:
       - checkout
@@ -52,10 +51,12 @@ jobs:
       - run: cd ~/project
       - run: bin/sigma install --no-interaction
       - run: bin/sigma uninstall --no-interaction
-      - run: vendor/bin/phpunit --log-junit test-results/phpunit/results.xml
+      - run: vendor/bin/phpunit --log-junit tmp/test-results/phpunit/results.xml
       - codecov/upload:
           file: tmp/coverage/coverage.xml
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
             - vendor
+      - store_test_results:
+          path: tmp/test-results
