@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Sigma\Sync;
 
 use Doctrine\Migrations\Configuration\Configuration as DoctrineConfiguration;
@@ -9,7 +8,6 @@ use Doctrine\Migrations\DependencyFactory;
 use Doctrine\Migrations\Finder\MigrationFinder;
 use Doctrine\Migrations\OutputWriter;
 use Doctrine\Migrations\QueryWriter;
-
 
 class Configuration extends DoctrineConfiguration
 {

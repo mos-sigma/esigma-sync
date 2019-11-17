@@ -7,9 +7,9 @@ use Symfony\Component\Console\Helper\Helper;
 class ParameterHelper extends Helper
 {
     /**
-     * Sigma configuration 
+     * Sigma configuration
      *
-     * @var array 
+     * @var array
      */
     private $parameters;
 

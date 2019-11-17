@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Sigma\Sync\Commands;
 
 use Doctrine\Migrations\Tools\Console\Command\MigrateCommand;

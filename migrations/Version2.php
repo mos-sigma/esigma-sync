@@ -12,8 +12,10 @@ final class Version2 extends SigmaMigration
 {
     /**
      * Description
-     * 
+     *
      * @return string
+     *
+     * @SuppressWarnings("ExcessiveMethodLength")
      */
     public function getDescription(): string
     {
@@ -23,11 +25,9 @@ final class Version2 extends SigmaMigration
     /**
      * Up queries
      *
-     * @param Schema $schema
-     *
      * @return void
      */
-    public function up(Schema $schema): void
+    public function up(): void
     {
         $this->skipIf($this->version->getConfiguration()->getConnection()->getParams()['driver'] !== 'pdo_mysql');
 
@@ -36,7 +36,7 @@ final class Version2 extends SigmaMigration
 
         $table = $config->sigmaParam('table');
         $type = $config->sigmaParam('type');
-        $fields = $this->triggerFormatedFields(); 
+        $fields = $this->triggerFormatedFields();
 
         $this->addSql(
             "CREATE TRIGGER update_checksum_on_update
@@ -46,18 +46,17 @@ final class Version2 extends SigmaMigration
 	                        INSERT INTO sigma_checksum (doc_id, doc_checksum, doc_type)
                             VALUES(NEW.id, MD5(CONCAT($fields)), ?) 
                             ON DUPLICATE KEY UPDATE doc_checksum = MD5(CONCAT($fields));
-                       END;",[$type]
+                       END;",
+            [$type]
         );
     }
 
     /**
      * Down queries
      *
-     * @param Schema $schema
-     *
      * @return void
      */
-    public function down(Schema $schema): void
+    public function down(): void
     {
         $this->addSql('DROP TRIGGER update_checksum_on_update;');
     }

@@ -11,7 +11,7 @@ final class Version4 extends SigmaMigration
 {
     /**
      * Description
-     * 
+     *
      * @return string
      */
     public function getDescription(): string
@@ -22,11 +22,11 @@ final class Version4 extends SigmaMigration
     /**
      * Up queries
      *
-     * @param Schema $schema
-     *
      * @return void
+     *
+     * @SuppressWarnings("ExcessiveMethodLength")
      */
-    public function up(Schema $schema): void
+    public function up(): void
     {
         /** @var  Configuration $config  */
         $config = $this->version->getConfiguration();
@@ -41,11 +41,9 @@ final class Version4 extends SigmaMigration
     /**
      * Down queries
      *
-     * @param Schema $schema
-     *
      * @return void
      */
-    public function down(Schema $schema): void
+    public function down(): void
     {
         $this->addSql('TRUNCATE TABLE sigma_checksum;');
     }

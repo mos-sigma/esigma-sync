@@ -11,8 +11,10 @@ final class Version1 extends SigmaMigration
 {
     /**
      * Description
-     * 
-     * @return string
+     *
+     * @return string 
+     *
+     * @SuppressWarnings("ExcessiveMethodLength")
      */
     public function getDescription(): string
     {
@@ -22,11 +24,9 @@ final class Version1 extends SigmaMigration
     /**
      * Up queries
      *
-     * @param Schema $schema
-     *
      * @return void
      */
-    public function up(Schema $schema): void
+    public function up(): void
     {
         $this->addSql('CREATE TABLE sigma_checksum (
                        doc_id INT NOT NULL,
@@ -39,11 +39,9 @@ final class Version1 extends SigmaMigration
     /**
      * Down queries
      *
-     * @param Schema $schema
-     *
      * @return void
      */
-    public function down(Schema $schema): void
+    public function down(): void
     {
         $this->addSql('ALTER TABLE sigma_checksum DROP INDEX unique_doc_id;');
 
