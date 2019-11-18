@@ -7,6 +7,9 @@ namespace Sigma\Sync\Migrations;
 use Doctrine\DBAL\Schema\Schema;
 use Sigma\Sync\SigmaMigration;
 
+/**
+ * @SuppressWarnings("unused")
+ */
 final class Version4 extends SigmaMigration
 {
     /**
@@ -23,10 +26,8 @@ final class Version4 extends SigmaMigration
      * Up queries
      *
      * @return void
-     *
-     * @SuppressWarnings("ExcessiveMethodLength")
      */
-    public function up(): void
+    public function up(Schema $schema): void
     {
         /** @var  Configuration $config  */
         $config = $this->version->getConfiguration();
@@ -43,7 +44,7 @@ final class Version4 extends SigmaMigration
      *
      * @return void
      */
-    public function down(): void
+    public function down(Schema $schema): void
     {
         $this->addSql('TRUNCATE TABLE sigma_checksum;');
     }

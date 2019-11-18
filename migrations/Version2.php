@@ -8,14 +8,15 @@ use Doctrine\DBAL\Schema\Schema;
 use Sigma\Sync\Configuration;
 use Sigma\Sync\SigmaMigration;
 
+/**
+ * @SuppressWarnings("unused")
+ */
 final class Version2 extends SigmaMigration
 {
     /**
      * Description
      *
      * @return string
-     *
-     * @SuppressWarnings("ExcessiveMethodLength")
      */
     public function getDescription(): string
     {
@@ -27,7 +28,7 @@ final class Version2 extends SigmaMigration
      *
      * @return void
      */
-    public function up(): void
+    public function up(Schema $schema): void
     {
         $this->skipIf($this->version->getConfiguration()->getConnection()->getParams()['driver'] !== 'pdo_mysql');
 
@@ -56,7 +57,7 @@ final class Version2 extends SigmaMigration
      *
      * @return void
      */
-    public function down(): void
+    public function down(Schema $schema): void
     {
         $this->addSql('DROP TRIGGER update_checksum_on_update;');
     }

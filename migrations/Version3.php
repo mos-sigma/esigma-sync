@@ -7,14 +7,15 @@ namespace Sigma\Sync\Migrations;
 use Doctrine\DBAL\Schema\Schema;
 use Sigma\Sync\SigmaMigration;
 
+/**
+ * @SuppressWarnings("unused")
+ */
 final class Version3 extends SigmaMigration
 {
     /**
      * Description
      *
      * @return string
-     *
-     * @SuppressWarnings("ExcessiveMethodLength")
      */
     public function getDescription(): string
     {
@@ -26,7 +27,7 @@ final class Version3 extends SigmaMigration
      *
      * @return void
      */
-    public function up(): void
+    public function up(Schema $schema): void
     {
         /** @var  Configuration $config  */
         $config = $this->version->getConfiguration();
@@ -52,7 +53,7 @@ final class Version3 extends SigmaMigration
      *
      * @return void
      */
-    public function down(): void
+    public function down(Schema $schema): void
     {
         $this->addSql('DROP TRIGGER update_checksum_on_insert;');
     }

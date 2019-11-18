@@ -7,14 +7,16 @@ namespace Sigma\Sync\Migrations;
 use Doctrine\DBAL\Schema\Schema;
 use Sigma\Sync\SigmaMigration;
 
+/**
+ * @SuppressWarnings("unused")
+ */
 final class Version1 extends SigmaMigration
 {
     /**
      * Description
      *
      * @return string 
-     *
-     * @SuppressWarnings("ExcessiveMethodLength")
+     * 
      */
     public function getDescription(): string
     {
@@ -26,7 +28,7 @@ final class Version1 extends SigmaMigration
      *
      * @return void
      */
-    public function up(): void
+    public function up(Schema $schema): void
     {
         $this->addSql('CREATE TABLE sigma_checksum (
                        doc_id INT NOT NULL,
@@ -41,7 +43,7 @@ final class Version1 extends SigmaMigration
      *
      * @return void
      */
-    public function down(): void
+    public function down(Schema $schema): void
     {
         $this->addSql('ALTER TABLE sigma_checksum DROP INDEX unique_doc_id;');
 

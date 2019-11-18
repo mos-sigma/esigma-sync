@@ -53,7 +53,7 @@ jobs:
       - run: bin/sigma install --no-interaction
       - run: bin/sigma uninstall --no-interaction
       - run: vendor/bin/phpcs --standard=standard.xml ./
-      - run: vendor/bin/phpmd ./ text cleancode,codesize,controversial,design,unusedcode,naming --exclude vendor
+      - run: vendor/bin/phpmd ./ text cleancode,codesize,controversial,design,unusedcode --exclude vendor
       - run: vendor/bin/phpunit --log-junit tmp/test-results/phpunit/results.xml
       - codecov/upload:
           file: tmp/coverage/coverage.xml
