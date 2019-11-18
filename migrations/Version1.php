@@ -15,8 +15,8 @@ final class Version1 extends SigmaMigration
     /**
      * Description
      *
-     * @return string 
-     * 
+     * @return string
+     *
      */
     public function getDescription(): string
     {
