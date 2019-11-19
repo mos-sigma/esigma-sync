@@ -1,10 +1,12 @@
 # Sigma-sync
 
 <p align="left">
-<a href="https://circleci.com/gh/mos-sigma/sigma-sync"><img src="https://circleci.com/gh/mos-sigma/sigma-sync.svg?style=svg" alt="Build Status"></a>
+<a href="https://circleci.com/gh/mos-sigma/sigma-sync" target="_blank">
+  <img target="_blank" src="https://img.shields.io/circleci/build/github/mos-sigma/sigma-sync" alt="Build Status">
+</a>
 
 <a href="https://codecov.io/gh/mos-sigma/sigma-sync">
-  <img src="https://codecov.io/gh/mos-sigma/sigma-sync/branch/master/graph/badge.svg" />
+  <img src="https://img.shields.io/codecov/c/github/mos-sigma/sigma-sync" alt="Code coverage"/>
 </a>
 
 <a href="https://packagist.org/packages/mos-sigma/sigma">
