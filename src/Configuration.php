@@ -11,11 +11,13 @@ use Doctrine\Migrations\QueryWriter;
 
 class Configuration extends DoctrineConfiguration
 {
+    /** * @var array
+     */
     private $sigmaParams;
 
     public function __construct(
         Connection $connection,
-        array $params,
+        array $sigmaParams,
         ?OutputWriter $outputWriter = null,
         ?MigrationFinder $migrationFinder = null,
         ?QueryWriter $queryWriter = null,
@@ -23,11 +25,18 @@ class Configuration extends DoctrineConfiguration
     ) {
         parent::__construct($connection, $outputWriter, $migrationFinder, $queryWriter, $dependencyFactory);
 
-        $this->sigmaParams = $params;
+        $this->sigmaParams = $sigmaParams;
     }
 
-    public function sigmaParam($name)
+    /**
+     * Retuns the array value for
+     * the given name
+     *
+     * @param string $key
+     * @return void
+     */
+    public function sigmaParam(string $key)
     {
-        return $this->sigmaParams[$name];
+        return $this->sigmaParams[$key];
     }
 }
