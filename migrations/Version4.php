@@ -33,7 +33,9 @@ final class Version4 extends SigmaMigration
         $config = $this->version->getConfiguration();
         $table = $config->sigmaParam('table');
         $type = $config->sigmaParam('type');
-        $fields = $this->formatedFields();
+        $fields = $config->sigmaParam('fields');
+
+        $fields = $this->formatedFields($fields);
 
         $this->addSql("INSERT INTO sigma_checksum(doc_id,doc_checksum,doc_type)
                        SELECT id, MD5(CONCAT($fields)), ? FROM $table;", [$type]);

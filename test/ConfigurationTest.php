@@ -15,6 +15,7 @@ class ConfigurationTest extends TestCase
 
     public function setUp(): void
     {
+        /** @var  Connection $connectionMock */
         $connectionMock = $this->createMock(Connection::class);
 
         $sigma = [

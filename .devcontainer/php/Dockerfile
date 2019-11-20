@@ -26,8 +26,7 @@ RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-x
     && echo "xdebug.remote_host=host.docker.internal">> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.var_display_max_depth=5" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.var_display_max_children=256" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.var_display_max_data=1024" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.idekey=VSCODE" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini 
+    && echo "xdebug.var_display_max_data=1024" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Install xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug

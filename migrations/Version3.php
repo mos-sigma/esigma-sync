@@ -33,7 +33,9 @@ final class Version3 extends SigmaMigration
         $config = $this->version->getConfiguration();
         $table = $config->sigmaParam('table');
         $type = $config->sigmaParam('type');
-        $fields = $this->triggerFormatedFields();
+        $fields = $config->sigmaParam('fields');
+
+        $fields = $this->triggerFormatedFields($fields);
 
         $this->addSql(
             "CREATE TRIGGER update_checksum_on_insert

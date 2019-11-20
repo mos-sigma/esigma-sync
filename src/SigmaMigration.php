@@ -11,11 +11,8 @@ abstract class SigmaMigration extends AbstractMigration
      *
      * @return string
      */
-    protected function triggerFormatedFields()
+    protected function triggerFormatedFields(array $fields)
     {
-
-        $fields = $this->version->getConfiguration()->sigmaParam('fields');
-
         $fields = array_map(function ($field) {
 
             return 'NEW.' . $field;
@@ -31,10 +28,8 @@ abstract class SigmaMigration extends AbstractMigration
      *
      * @return string
      */
-    protected function formatedFields()
+    protected function formatedFields(array $fields)
     {
-        $fields = $this->version->getConfiguration()->sigmaParam('fields');
-
         $fields = implode(',', $fields);
 
         return $fields;
